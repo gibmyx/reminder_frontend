@@ -6,38 +6,36 @@ import {useEffect} from "react";
 
 export const AppRouter = () => {
 
-    const { status, checkAuthToken } = useAuthStore();
-    // const authStatus = 'not-authenticated'; // 'authenticated'; // 'not-authenticated';
+    const {status, checkAuthToken} = useAuthStore();
 
     useEffect(() => {
         checkAuthToken();
     }, [])
 
+    if (status === 'checking') {
+        return (
+            <h3>Cargando...</h3>
+        )
+    }
 
     return (
         <BrowserRouter>
             <Routes>
-            {
-                ( status === 'not-authenticated')
-                    ? (
-                        <>
-                            <Route path="/auth/*" element={<AuthRoutes/>}></Route>
-                            <Route path='/*' element={ <Navigate to="/auth/login" /> } />
-                        </>
-                    )
-                    : (
-                        <>
-                            <Route path="/" element={<CrmRouter/>}></Route>
-                            <Route path="/*" element={ <Navigate to="/" /> } />
-                        </>
-                    )
-            }
-
-            {/*<div className="d-flex justify-content-center align-items-center clase_cargando">*/}
-            {/*    <div className="spinner-border" role="status">*/}
-            {/*        <span className="visually-hidden">Loading...</span>*/}
-            {/*    </div>*/}
-            {/*</div>*/}
+                {
+                    (status === 'not-authenticated')
+                        ? (
+                            <>
+                                <Route path="/auth/*" element={<AuthRoutes/>}></Route>
+                                <Route path='/*' element={<Navigate to="/auth/login"/>}/>
+                            </>
+                        )
+                        : (
+                            <>
+                                <Route path="/" element={<CrmRouter/>}></Route>
+                                <Route path="/*" element={<Navigate to="/"/>}/>
+                            </>
+                        )
+                }
             </Routes>
         </BrowserRouter>
     );

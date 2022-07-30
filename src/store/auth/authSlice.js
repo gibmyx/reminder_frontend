@@ -18,7 +18,6 @@ export const authSlice = createSlice({
             state.errorMessage = null;
         },
         onLogin: ( state, {payload}) => {
-            console.log(payload)
             state.status = 'authenticated';
             state.user = payload;
             state.errorMessage = null;
