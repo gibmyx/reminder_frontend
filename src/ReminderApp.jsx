@@ -1,6 +1,6 @@
 import {AppRouter} from "./router/AppRouter.jsx";
 
-export const CrmApp = () => {
+export const ReminderApp = () => {
     return (
         <AppRouter />
     );

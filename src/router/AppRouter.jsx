@@ -1,6 +1,6 @@
 import {BrowserRouter, Route, Routes, Navigate} from 'react-router-dom';
 import {AuthRoutes} from "../auth/routes/AuthRouter.jsx";
-import {CrmRouter} from "../crm/routes/CrmRouter.jsx";
+import {ReminderRouter} from "../reminder/routes/ReminderRouter.jsx";
 import {useAuthStore} from "../auth/hooks/index.js";
 import {useEffect} from "react";
 
@@ -31,7 +31,7 @@ export const AppRouter = () => {
                         )
                         : (
                             <>
-                                <Route path="/" element={<CrmRouter/>}></Route>
+                                <Route path="/" element={<ReminderRouter/>}></Route>
                                 <Route path="/*" element={<Navigate to="/"/>}/>
                             </>
                         )

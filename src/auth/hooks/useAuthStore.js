@@ -74,7 +74,8 @@ export const useAuthStore = () => {
         }
     }
 
-    const startLogout = () => {
+    const startLogout = async () => {
+        await reminderApi.post('/api/logout');
         localStorage.clear();
         dispatch(onLogout());
     }
